@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Higher Or Lower</h1>
+<p>pick higher or lower and suit</p>
+
+<br>
+
+
+<br>
+<br>
+<form method ="POST">
+  <label for="lvalue">Value:</label><br><br>
+    
+  <select id="Value" name = "Value" required>
+    
+    <option value="Higher">Higher</option>
+    <option value="Lower">Lower</option>
+
+    
+    
+  </select><br><br>
+    <input type="submit" value="Submit" type = "hidden">
+  </form> 
+  <br>
+  <form method ="POST" action="{{ url_for('newGame') }}">
+    
+      <input type="submit" value="New game" type = "hidden">
+    </form><br>
+
+    <p>pick higher or lower and suit</p>
+    {%for i in story %}
+        {{ i }}<br>
+    {% endfor %}
+
+</body>
+</html>
