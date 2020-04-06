@@ -1,11 +1,13 @@
 from application import app
 from flask import render_template, request, session,redirect, url_for
 import requests
+
 app.secret_key = "super secret key"
+
 @app.route('/', methods=['GET','POST'])
 def home():
 
-    card1 = requests.get('http://localhost:5001/random')
+    card1 = requests.get('http://service_2:5001/random')
     card = card1.text
     
     
@@ -23,7 +25,7 @@ def home():
         details=request.form
         value=details['Value']
         
-        url = "http://localhost:5003/work?Card=" + number + "&Value=" + value
+        url = "http://service_4:5003/work?Card=" + number + "&Value=" + value
         query = requests.get(url)
         second = query.text
         session['Message'] = second + "," +  l1[0] + " "+ l1[1] + " "+l1[2]
@@ -48,7 +50,7 @@ def home():
 def newGame():
     session.pop('Message',None)
     session.pop('Card',None)
-    reset = requests.get("http://localhost:5003/reset")
+    reset = requests.get("http://service_4:5003/reset")
     
     return redirect(url_for('home'))
 

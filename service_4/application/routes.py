@@ -15,7 +15,7 @@ def home():
     f_card = request.args.get('Card')
     #picked.append(f_card)
     while len(picked) < 52:
-        card = requests.get('http://localhost:5001/random')
+        card = requests.get('http://service_2:5001/random')
         if card.text not in picked:
             player1.addPicked(card.text)
             break
@@ -47,7 +47,7 @@ def home():
 
 
 
-    points = requests.get('http://localhost:5002/random')
+    points = requests.get('http://service_3:5002/random')
     point = points.text
 
     if flag:
