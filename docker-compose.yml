@@ -1,6 +1,6 @@
 version: "3.7"
 networks:
-    net1:
+    net2:
         driver: overlay
     
 services:
@@ -10,7 +10,7 @@ services:
         ports:
             - "5000:5000"
         networks:
-            - net1
+            - net2
         deploy:
             replicas: 2
         
@@ -18,7 +18,7 @@ services:
     service_2:
         image: amranlab/service_2
         networks:
-            - net1
+            - net2
         deploy:
             replicas: 2
         
@@ -26,16 +26,16 @@ services:
     service_3:
         image: amranlab/service_3
         networks:
-            - net1
+            - net2
         deploy:
-            replicas: 3
+            replicas: 2
 
     service_4:
         image: amranlab/service_4
         networks:
-            - net1
+            - net2
         deploy:
-            replicas: 3
+            replicas: 1
         
 
 
