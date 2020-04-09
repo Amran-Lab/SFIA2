@@ -12,7 +12,7 @@ services:
         networks:
             - net2
         deploy:
-            replicas: 2
+            replicas: 3
         
 
     service_2:
@@ -20,7 +20,7 @@ services:
         networks:
             - net2
         deploy:
-            replicas: 2
+            replicas: 3
         
 
     service_3:
@@ -28,14 +28,14 @@ services:
         networks:
             - net2
         deploy:
-            replicas: 2
+            replicas: 3
 
     service_4:
         image: amranlab/service_4
         networks:
             - net2
         deploy:
-            replicas: 1
+            replicas: 3
         
 
 
