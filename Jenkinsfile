@@ -16,7 +16,7 @@ pipeline{
                 sh 'pip3 install -U pytest'
                 sh 'pip3 install urllib3'
                 sh 'pip3 install coverage'
-                sh 'py.test /var/jenkins_home/workspace/dockerline/service_1/testing.py --cov='service_1' --cov-report term-missing'
+                sh 'py.test /var/jenkins_home/workspace/dockerline/service_1/testing.py --cov="service_1" --cov-report term-missing'
                 
                 
 
