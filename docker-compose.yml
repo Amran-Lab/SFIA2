@@ -9,6 +9,8 @@ services:
         image: amranlab/service_1
         ports:
             - "5000:5000"
+        env_file:
+            - ./.env
         networks:
             - net2
         deploy:
