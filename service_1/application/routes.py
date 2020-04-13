@@ -1,16 +1,22 @@
 from application import app
 from flask import render_template, request, session,redirect, url_for
+from flask_mysqldb import MySQL
+import os, random, requests
 import requests
 
 app.secret_key = "super secret key"
+mysql = MySQL(app)
+
+
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
 
 @app.route('/', methods=['GET','POST'])
 def home():
-
     card1 = requests.get('http://service_2:5001/random')
-    card = card1.text
-    
-    
+    card = card1.text       
     if request.method == 'POST':
 
         
@@ -80,3 +86,38 @@ def formalise(string):
     new_list.append('New Card')
     new_list.append(new_card)
     return new_list
+@app.route('/addRecord', methods=['GET','POST'])
+def addRecord():
+    details=request.form
+    nameof=details['name']
+    story = []
+    if 'Message' in session:
+        message = session['Message'] + "Fix"
+        try:
+        
+            story = formalise(message)
+        except:
+        
+            story.append(message)
+        previous_card_index = story.index('You Guessed') + 1
+        drawn_card_index = story.index('Drawn Card') + 1
+        latest_score_index = story.index('Drawn Card') + 2
+        score = [story[previous_card_index],story[drawn_card_index],story[latest_score_index]]
+
+    else:
+        score = ['0','0','0']
+    
+    prev = str(score[0])
+    next1 = str(score[1])
+    points = str(score[2])
+    cur = mysql.connection.cursor()
+    cur.execute("select * from GameTable where Name=%s",[nameof])
+    records = cur.fetchall()
+    if len(records)>0:                                         #checks if record already exists
+        cur.execute("UPDATE GameTable SET previous= %s picked= %s points= %s where Name=%s",(prev, next1, points, nameof ))
+            
+    else:        
+        cur.execute("INSERT INTO GameTable (Name,previous,picked,points) VALUES (%s, %s, %s, %s)", (nameof, prev, next1, points))
+    mysql.connection.commit()
+    cur.close()    
+    return redirect(url_for('home'))
