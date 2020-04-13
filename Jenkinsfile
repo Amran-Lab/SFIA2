@@ -17,7 +17,7 @@ pipeline{
                 sh 'pip3 install urllib3'
                 sh 'pip3 install coverage'
                 sh 'pip3 install pytest-cov'
-                sh 'pip3 install cov cov-report'
+                
                 sh 'python3 -m pytest service_1/testing.py  --cov="service_1"'
                 
                 
