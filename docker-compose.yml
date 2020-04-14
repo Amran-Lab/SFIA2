@@ -40,7 +40,7 @@ services:
             replicas: 1
 
     service_nginx:
-        image: amranlab/Nginx:latest
+        image: amranlab/nginx:latest
         ports:
             - 80:80
         networks:
