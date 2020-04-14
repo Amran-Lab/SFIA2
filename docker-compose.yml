@@ -38,7 +38,22 @@ services:
             - net2
         deploy:
             replicas: 1
-        
+
+    service_nginx:
+        image: amranlab/Nginx:latest
+        ports:
+            - 80:80
+        networks:
+            - net2
+        depends_on:
+            - service_1
+            - service_2
+            - service_3
+            - service_4
+        deploy:
+            replicas: 3
+
+    
 
 
 
