@@ -5,7 +5,7 @@ import application
 import app
 import os 
 app = Flask(__name__)
-sqlhost = os.environ['SQLHOST']
+sqlhost = os.getenv('SQLHOST')
 sqlpass = os.environ['SQLPASS']
 app.config['MYSQL_HOST'] = sqlhost
 app.config['MYSQL_USER'] = 'root'
