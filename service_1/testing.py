@@ -7,9 +7,9 @@ import os
 app = Flask(__name__)
 sqlhost = os.getenv('SQLHOST')
 sqlpass = os.getenv('SQLPASS')
-app.config['MYSQL_HOST'] = sqlhost
+app.config['MYSQL_HOST'] = str(sqlhost)
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = sqlpass
+app.config['MYSQL_PASSWORD'] = str(sqlpass)
 app.config['MYSQL_DB']= 'DockerBase'
 
 mysql = MySQL(app)
