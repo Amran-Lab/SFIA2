@@ -19,6 +19,8 @@ pipeline{
                 sh 'pip3 install pytest-cov'
                 
                 sh 'python3 -m pytest service_1/testing.py  --cov="service_1"'
+
+                sh 'echo $MYSQL_DB'
                 
                 
 
