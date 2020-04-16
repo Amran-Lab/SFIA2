@@ -30,14 +30,14 @@
 
 The Brief was to create a CI/CD pipeline using Jenkins andsible and docker.It should also cnsist of 4 micro-services with data being persisted by sql.
 
-I decided to make a higher/lower game with a deck of cards. With service once containing front end, service 2 picking a card, service 3 giving points/message and service 4 comapring what user picked to what happened(the calculations).
+I decided to make a higher/lower game with a deck of cards. With service one containing front end, service 2 picking a card, service 3 giving points/message and service 4 comaparing what user picked to what card was drawn(the calculations).
 
 ### WireFrame
 
 ![GitHub Logo](https://github.com/Amran-Lab/RDME/blob/master/WireFrame.PNG?raw=true)
 
 I plan to have an apllication that gives you a card and you can pick higher or lower and compares it against a new card.
-You can submit you name and last go to sql.
+You can submit you name and last round of your go to sql.
 
 
 <a name="RA"></a>
@@ -90,8 +90,8 @@ You can submit you name and last go to sql.
 
 
 
-For my planning I used Trello. I have moved over tasks when completed to done or when something is ongoing such as the readme it is in the doing tab. I also have a tab of
-for the user stories and requirements, to make sure I am meeting the requirements.
+For my planning I used Trello. I have moved over tasks when completed to done or when something is ongoing such as the readme it is in the doing tab. I added more tasks as I went along.
+
 
 
 
@@ -103,8 +103,7 @@ for the user stories and requirements, to make sure I am meeting the requirement
 ![GitHub Logo](https://github.com/Amran-Lab/RDME/blob/master/Diagram1.png?raw=true)
 
 Program will be coded in vscode using python-flask and version controlled on GitHub. You can build with jenkins with the latest version. This will be ran on a GCP Virtual Machine which will be connected to a GCP MYSQL database. There are 4 services which are in a network.
-Service 1 gets card info from service 2 and service 4 gets player choice and new card info from service 1 and sends back information to
-service 1 depending on the choice and outcome the message will be altered by service 3.
+Service 1 gets card info from service 2 and service 4 gets player choice and new card info from service 1 and service 2 and then sends back information to service 1, depending on the choice and outcome the message will be altered by service 3.
 
 ### NGINX
 
